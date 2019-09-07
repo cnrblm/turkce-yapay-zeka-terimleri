@@ -55,6 +55,7 @@
 	        for(i = 0; i < lines.length; i++){ 
 	        	if (lines[i].includes(":")){
 		        	line=lines[i].replace (/\*/g, "");
+		        	line=line.replace(/\n$/, '');
 		        	pair=line.split(":");
 		        	key="\"" + pair[0]+ "\"";
 		        	val="\"" +pair[1]+ "\"";
