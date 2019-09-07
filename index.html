@@ -42,18 +42,36 @@
 	<script type="text/javascript">
 		
 		(function() {
-   var txt = '';
+
+		var jsonObj;
+   		var jtxt = '{';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){
 		  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
-		    txt = xmlhttp.responseText;
-		    console.log(txt);
+		    var txt = xmlhttp.responseText;
+		    
+
+			lines = txt.split("\n"); 
+	        for(i = 0; i < lines.length; i++){ 
+	        	line=lines[i].replace(/[^A-Za-z:]/g, "");
+	        	key=line.split(":")[0];
+	        	val=line.split(":")[1];
+	            key = "'" + key + "'";
+	            val = "'" + val + "'";
+	            jtxt=jtxt +key+":"+val+",";
+	        }
+	         jtxt=jtxt+"}";
+	          jsonObj = JSON.parse(jtxt);
+	          console.log(jsonObj);
 		  }
 		};
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
 		xmlhttp.send();
 
-})();
+	
+
+
+		})();
 	</script>
 
 
