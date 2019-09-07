@@ -53,16 +53,19 @@
 
 			lines = txt.split("\n"); 
 	        for(i = 0; i < lines.length; i++){ 
-	        	line=lines[i].replace(/[^A-Za-z:]/g, "");
-	        	key=line.split(":")[0];
-	        	val=line.split(":")[1];
-	            key = "'" + key + "'";
-	            val = "'" + val + "'";
-	            jtxt=jtxt +key+":"+val+",";
+	        	if (lines[i].includes(":")){
+		        	line=lines[i].replace (/\*/g, "");
+		        	pair=line.split(":");
+		        	key="\"" + pair[0]+ "\"";
+		        	val="\"" +pair[1]+ "\"";
+		            jtxt=jtxt +key+":"+val+",";
+	        	}
 	        }
+	        jtxt = jtxt.substring(0, jtxt.length-1);
 	         jtxt=jtxt+"}";
-	          //jsonObj = JSON.parse(jtxt);
-	          console.log(jtxt);
+	         console.log(jtxt);
+	         jsonObj = JSON.parse("'"+jtxt+"'");
+	          
 		  }
 		};
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
