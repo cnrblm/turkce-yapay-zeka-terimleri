@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+	    margin: 60px auto;
+	    width: 70%;
+	}
+	footer ul {
+	    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+	    padding: 0px;
+	    list-style: none;
+	    font-weight: bold;
+	}
+	footer ul li {
+	    display: inline;
+	    margin-right: 20px;
+	}
+	a {
+	    text-decoration: none;
+	    color: #999;
+	}
+	a:hover {
+	    text-decoration: underline;
+	}
+	h1 {
+	    font-size: 3em;
+	    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+	}
+	p {
+	    font-size: 1.5em;
+	    line-height: 1.4em;
+	    color: #333;
+	}
+	footer {
+	    border-top: 1px solid #d5d5d5;
+	    font-size: .8em;
+	}
+	</style>
+
+	<script type="text/javascript">
+		
+		(function() {
+   var txt = '';
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+		  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+		    txt = xmlhttp.responseText;
+		    console.log(txt);
+		  }
+		};
+		xmlhttp.open("GET","ingilizce-turkce.md",true);
+		xmlhttp.send();
+
+})();
+	</script>
+
+
+</head>
+<body>
+<div> <h1>Türkçe Yapay Zeka Terimleri </h1> </div>
+<div> 
+<input type="radio" checked="true" name="radio_tren" value="0"> Türkçe - İngilizce
+<input type="radio" name="radio_tren" value="1"> İngilizce - Türkçe 
+<br/>
+<input type="text" name="txt_cevirimetin" /> <button>Çevir</button>
+<br/>
+<p>Sonuç : </p>
+ </div>
+<div class="footer" ></div>
+</body>
+</html>
