@@ -42,7 +42,7 @@
 	<script type="text/javascript">
 		
 		(function() {
-
+			
 		var jsonObj;
    		var jtxt = '{';
 		var xmlhttp = new XMLHttpRequest();
@@ -61,14 +61,13 @@
 	            jtxt=jtxt +key+":"+val+",";
 	        }
 	         jtxt=jtxt+"}";
-	          jsonObj = JSON.parse(jtxt);
-	          console.log(jsonObj);
+	          //jsonObj = JSON.parse(jtxt);
+	          console.log(jtxt);
 		  }
 		};
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
 		xmlhttp.send();
 
-	
 
 
 		})();
