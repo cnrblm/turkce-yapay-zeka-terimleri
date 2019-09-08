@@ -24,7 +24,6 @@
 		(function() {
 			
 		var jarr;
-   		var jtxt = '{';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){
 		  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
@@ -34,8 +33,8 @@
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
 		xmlhttp.send();
 
-		function filterByValue(array, value) {
-  		return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+		function filterByValue(array, value,) {
+  			return array.filter((data) =>  data["tr"].toLowerCase().indexOf(value.toLowerCase()) !== -1);
 		}
 
 		function createjsonArray(responseText){
@@ -50,8 +49,7 @@
 	        	}
 	        }
 
-	        console.log(obj);
-			//jsonStr = JSON.stringify(obj);
+	        return  obj;
 		}
 
 		function displayResult(){
@@ -71,7 +69,7 @@
 <input type="radio" checked="true" name="radio_tren" value="0"> Türkçe - İngilizce
 <input type="radio" name="radio_tren" value="1"> İngilizce - Türkçe 
 <br/>
-<input type="text" id="txt_input" onInput="displayResult()" /> 
+<input type="text" id="txt_input" onkeypress="displayResult()" /> 
 <br/>
 <p>Sonuç : </p>
  </div>
