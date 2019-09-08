@@ -20,10 +20,10 @@
 	</style>
 
 	<script type="text/javascript">
-		
+		var jarr;
 		(function() {
 			
-		var jarr;
+		
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){
 		  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
@@ -32,10 +32,6 @@
 		};
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
 		xmlhttp.send();
-
-		function filterByValue(array, value,) {
-  			return array.filter((data) =>  data["tr"].toLowerCase().indexOf(value.toLowerCase()) !== -1);
-		}
 
 		function createjsonArray(responseText){
 			var jsonStr = '{"trtoen":[]}';
@@ -52,13 +48,16 @@
 	        return  obj;
 		}
 
+		})();
+
+		function filterByValue(array, value,) {
+  			return array.filter((data) =>  data["tr"].toLowerCase().indexOf(value.toLowerCase()) !== -1);
+		}
+
 		function displayResult(){
 			var input_val = document.getElementById("txt_input").value;
     		console.log(filterByValue(jarr, input_val));
 		}
-
-
-		})();
 	</script>
 
 
