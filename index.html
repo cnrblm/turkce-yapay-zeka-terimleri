@@ -50,7 +50,8 @@
 
 		})();
 
-		function filterByValue(array, value,) {
+		function filterByValue(array, value) {
+			console.log(array);
   			return array.filter((data) =>  data["tr"].toLowerCase().indexOf(value.toLowerCase()) !== -1);
 		}
 
