@@ -23,35 +23,41 @@
 		
 		(function() {
 			
-		var jsonObj;
+		var jarr;
    		var jtxt = '{';
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){
 		  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
-		    var txt = xmlhttp.responseText;
-		    
-
-			lines = txt.split("\n"); 
-	        for(i = 0; i < lines.length; i++){ 
-	        	if (lines[i].includes(":")){
-		        	line=lines[i].replace (/\*/g, "");
-		        	line=line.replace(/\n$/, '');
-		        	pair=line.split(":");
-		        	key="\"" + pair[0]+ "\"";
-		        	val="\"" +pair[1]+ "\"";
-		            jtxt=jtxt +key+":"+val+",";
-	        	}
-	        }
-	        jtxt = jtxt.substring(0, jtxt.length-1);
-	         jtxt=jtxt+"}";
-	         console.log(jtxt);
-	         jsonObj = JSON.parse(jtxt);
-	          
+			jarr=createjsonArray(xmlhttp.responseText);
 		  }
 		};
 		xmlhttp.open("GET","ingilizce-turkce.md",true);
 		xmlhttp.send();
 
+		function filterByValue(array, value) {
+  		return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+		}
+
+		function createjsonArray(responseText){
+			var jsonStr = '{"trtoen":[]}';
+			var obj = JSON.parse(jsonStr);
+			lines = responseText.split("\n"); 
+	        for(i = 0; i < lines.length; i++){ 
+	        	if (lines[i].includes(":")){
+		        	line=lines[i].replace (/\*/g, "");
+		        	pair=line.split(":");
+		        	obj['trtoen'].push({"tr":pair[0],"en":pair[1]});
+	        	}
+	        }
+
+	        console.log(obj);
+			//jsonStr = JSON.stringify(obj);
+		}
+
+		function displayResult(){
+			var input_val = document.getElementById("txt_input").value;
+    		console.log(filterByValue(jarr, input_val));
+		}
 
 
 		})();
@@ -65,7 +71,7 @@
 <input type="radio" checked="true" name="radio_tren" value="0"> Türkçe - İngilizce
 <input type="radio" name="radio_tren" value="1"> İngilizce - Türkçe 
 <br/>
-<input type="text" name="txt_cevirimetin" /> <button>Çevir</button>
+<input type="text" id="txt_input" onInput="displayResult()" /> 
 <br/>
 <p>Sonuç : </p>
  </div>
